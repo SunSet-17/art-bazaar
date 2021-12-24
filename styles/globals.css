@@ -1,20 +1,42 @@
-/* html,
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.hover\:text-bg:hover {
+  --tw-text-opacity: 1;
+  color: rgb(20 14 56 / var(--tw-text-opacity));
+}
+
+
+html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: Apple LiGothic; */
+  line-height: 1.6;
+  font-size: 18px;
+  background: #140E38;
 }
 
 * {
   box-sizing: border-box;
-} */
+}
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
