@@ -4,7 +4,8 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+// connect to the default API address http://localhost:5001
+const client = ipfsHttpClient()
 
 import Head from 'next/head'
 import Image from 'next/image'
@@ -36,7 +37,7 @@ export default function CreatePage() {
     })
     try {
       const added = await client.add(data)
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      const url = `http://localhost:5001/${added.path}`
       /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
       createSale(url)
     } catch (error) {
