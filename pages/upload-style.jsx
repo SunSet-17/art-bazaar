@@ -30,7 +30,13 @@ Rain is falling all around, It falls on field and tree, It rains on the umbrella
       <div className={styles.divRight}>
         <button className={styles.tags}></button>
         {/* //todo: Image Grid */}
-        <Image className={styles.styleImg} src='/public/styleSample.png'></Image>
+        <Image
+          // className={styles.styleImg}
+          src='/public/styleSample.png' // Route of the image file
+          height={500} // Desired size with correct aspect ratio
+          width={500} // Desired size with correct aspect ratio
+          alt="Style Sample"
+        />
       </div>
 
     </>
