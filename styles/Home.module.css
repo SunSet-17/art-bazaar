@@ -1,3 +1,62 @@
+/* The font */
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Shizuru&display=swap');
+
+
+.description {
+  position: absolute;
+  left: 121px;
+  top: 306px;
+  font-size:100px;
+
+  font-family: 'Acme', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  /* font-size: 64px; */
+  /* line-height: 81px; */
+  /* text-transform: uppercase; */
+
+}
+
+.toCreate {
+  position: absolute;
+  width: 178.2px;
+  height: 65.07px;
+  left: 200px;
+  top: 720px;
+  
+  border-width: thick;
+  border-color: #FDBD6D;
+
+  background: linear-gradient(178.47deg, #6C10A6 25.94%, #7405BA 44.19%, #B867EB 93%);
+  box-shadow: inset -2px -2px 4px rgba(20, 14, 56, 0.5), inset 2px 2px 4px rgba(20, 14, 56, 0.5);
+
+  border-radius: 21px;
+  -webkit-border-radius: 21px;
+  -moz-border-radius: 21px;
+  -ms-border-radius: 21px;
+  -o-border-radius: 21px;
+
+  font-family: 'Acme', sans-serif;
+  font-size: 24px;
+  line-height: 33px;
+}  
+
+.twoDesigner {
+  
+  position: absolute;
+  width: 901px;
+  height: 754px;
+  left: 1440px;
+  top: 221px;
+
+  filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.74));
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+/* The following is the default setting */
+
+
+
 .container {
   padding: 0 2rem;
 }

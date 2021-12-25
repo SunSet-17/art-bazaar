@@ -1,15 +1,19 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
+import styles from '../styles/global.module.css' 
 
-export default function IndexPage() {
+export default function CreatePage() {
   return (
-    <div>
+    <>
       <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
-          rel="stylesheet"
-        />
+        <title>ArtBazzar</title>
+        <meta name="description" content="Style Transfer NFT" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      
       <p>Hello world!</p>
-    </div>
+    </>
   )
 }

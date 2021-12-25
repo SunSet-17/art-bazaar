@@ -1,7 +1,7 @@
 import styles from '../styles/global.module.css' 
 import Link from 'next/link'
 
-export default function NavComponent({page}) {
+export default function NavComponent({page, login, address}) {
 
     // todo: 按照所在的Tab显示按钮的特殊背景
 

@@ -9,6 +9,22 @@
 }
 
 
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Shizuru&display=swap');
+
+/* font-family: 'Acme', sans-serif;
+font-family: 'Shizuru', cursive; */
+
+
+
+
+
+
+
+
+
+
+/* The following is the default setting */
+
 html,
 body {
   padding: 0;
@@ -39,4 +55,6 @@ img {
   display: block;
 }
 
-
+body, p {
+  color: white;
+}
