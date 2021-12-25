@@ -82,7 +82,7 @@ export default function NavComponent({page, login, address}) {
                     <div className="md:hidden flex items-center">
                     {/* 菜单按钮 */}
                     <button onClick={()=>{document.querySelector(".mobile-menu").classList.toggle("hidden")}} className="outline-none mobile-menu-button">
-                        <svg className=" w-6 h-6 text-white hover:text-slate-500 " x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <svg className=" w-6 h-6 text-white hover:text-slate-500 " x-show="!showMenu" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                     </div>
 
