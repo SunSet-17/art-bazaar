@@ -8,7 +8,7 @@
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  width: 90%;
+  /* width: 90%; */
   }
   
 .div1 { 
@@ -21,7 +21,7 @@
 
 .theInput{
   width: 100%;
-  height: 32px;
+  height: 2rem;
   background: #09002A;
   border: 2px solid #202022;
   box-sizing: border-box;
@@ -60,8 +60,9 @@
 }
 .divColRight {
   margin-top: 3rem;
-  margin-left: 3rem;
+  margin-left: 2rem;
   grid-area: 1 / 2 / 2 / 6; 
+  width: 90%;
 }
 
 /* //todo modify the width */
@@ -169,17 +170,17 @@
 }
 
 .tags {
-  /* position: absolute; */
-  margin: 1rem;
-  width: 80%;
-  height: 15%;
-  /* right: 91px; */
-  /* top: 147px; */
-
+  /* margin: 0rem; */
+  width: 100%;
+  height: 10%;
   background: #09002A;
   border: 3px solid #281E4D;
   box-sizing: border-box;
   border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }
 
 .createNow {

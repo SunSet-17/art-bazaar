@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import StyleGrid from '../components/StyleGrid';
 // import styles from '../styles/global.module.css' 
 import styles from '../styles/Create.module.css' 
 
@@ -32,22 +33,30 @@ export default function CreatePage() {
         <meta name="description" content="Style Transfer NFT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className={styles.divColParent}>
+        <div className={styles.boxDiv, styles.divColLeft}>
+          <button className={styles.selectBox}></button>
+          <p className={styles.upload_reminder}>
+            File types supported: JPG, JPEG, PNG, SVG
+          </p>
+          <button className={styles.selectBox}></button>
+          <br/>
 
-      <div className={styles.boxDiv}>
-        <button className={styles.selectBox}></button>
-        <p className={styles.upload_reminder}>File types supported: JPG, JPEG, PNG, SVG</p>
-        <button className={styles.selectBox}></button>
-        <br/>
+          
+          <Link href="/creating"> 
+            <button className={styles.createNow} onClick={clickCreate}>CLICK TO CREATE</button>
+          </Link>
+        </div>
 
-        <Link href="/creating"> 
-          <button className={styles.createNow} onClick={clickCreate}>CLICK TO CREATE</button>
-        </Link>
+        <div className={styles.divColRight}>
+          <button className={styles.tags}></button>
+
+          <StyleGrid></StyleGrid>
+
+        </div>
       </div>
+      
 
-      <div className={styles.divRight}>
-        <button className={styles.tags}></button>
-
-      </div>
 
     </>
   )
