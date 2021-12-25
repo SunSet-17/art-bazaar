@@ -14,20 +14,23 @@ export default function CreatePage() {
       </Head>
 
       <div className={styles.boxDiv}>
-        <button className={styles.selectBox}></button>
-        <p className={styles.upload_reminder}>File types supported: JPG, JPEG, PNG, SVG</p>
-        <button className={styles.selectBox}></button>
+        {/* 用来 upload your style picture 的按钮 */}
+        <button className={styles.selectBox}  ></button>
+        <p className={styles.textUnderStyle}>Rain is falling all around, It falls on field and tree, It rains on the umbrella here. And on the ships at sea. 
+Rain is falling all around, It falls on field and tree, It rains on the umbrella here. And on the ships at sea. </p>
+        {/* <button className={styles.selectBox}></button> */}
         <br/>
 
         
         <Link href="/creating"> 
-          <button className={styles.createNow} >CLICK TO CREATE</button>
+          <button className={styles.createNow} >UPLOAD STYLE</button>
         </Link>
       </div>
 
       <div className={styles.divRight}>
         <button className={styles.tags}></button>
-
+        {/* //todo: Image Grid */}
+        <Image className={styles.styleImg} src='/public/styleSample.png'></Image>
       </div>
 
     </>
