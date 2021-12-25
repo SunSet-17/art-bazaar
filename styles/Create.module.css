@@ -1,19 +1,76 @@
 /* The font */
 @import url('https://fonts.googleapis.com/css2?family=Acme&family=Shizuru&display=swap');
 
-.boxDiv {
+
+
+
+
+.divColParent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+  
+.divColLeft {
   margin-top: 3rem;
   margin-left: 5rem;
+  grid-area: 1 / 1 / 2 / 2; 
+}
+.divColRight {
+  margin-top: 3rem;
+  margin-left: 3rem;
+  grid-area: 1 / 2 / 2 / 6; 
 }
 
-.divRight {
-
+.outputImg{
+  /*position: absolute;
+  */
+  width: 452px;
+  height: 452px;
+  /*left: 527px;
+  top: 147px;
+  outputImg
+  */
+  /* background: url(static_imgs_output_image___03960608972140cc835e9762af3440cbce1a14cbb6f84a359e2ef5bbbd74b17235171640240337_.pic.jpg); */
+  filter: drop-shadow(4px 4px 10px rgba(139, 111, 255, 0.25));
+  border-radius: 10px;
+  -webkit-filter: drop-shadow(4px 4px 10px rgba(139, 111, 255, 0.25));
 }
+
 
 .styleImg {
   margin: 1rem;
   height: 380px;
   width: 380px;
+}
+
+.listOnBazaar {
+  width: 212.63px;
+  height: 63.34px;
+  /* left: 200px;
+  top: 720px; */
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  
+  border-width: thick;
+  border-color: #FDBD6D;
+
+  background: linear-gradient(178.47deg, #6C10A6 25.94%, #7405BA 44.19%, #B867EB 93%);
+  box-shadow: inset -2px -2px 4px rgba(20, 14, 56, 0.5), inset 2px 2px 4px rgba(20, 14, 56, 0.5);
+
+  border-radius: 21px;
+  -webkit-border-radius: 21px;
+  -moz-border-radius: 21px;
+  -ms-border-radius: 21px;
+  -o-border-radius: 21px;
+
+  font-family: 'Acme', sans-serif;
+  font-size: 24px;
+  line-height: 33px;
 }
 
 .upload_reminder {
@@ -68,11 +125,12 @@
 }
 
 .tags {
-  position: absolute;
-  width: 70%;
-  height: 10%;
-  right: 91px;
-  top: 147px;
+  /* position: absolute; */
+  margin: 1rem;
+  width: 80%;
+  height: 15%;
+  /* right: 91px; */
+  /* top: 147px; */
 
   background: #09002A;
   border: 3px solid #281E4D;
@@ -142,6 +200,15 @@
   filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.74));
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
+
+
+
+
+
+
+
+
+
 
 /* The following is the default setting */
 
