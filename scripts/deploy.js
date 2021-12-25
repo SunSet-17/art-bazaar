@@ -20,7 +20,7 @@ async function main() {
   // await greeter.deployed();
   // console.log("Greeter deployed to:", greeter.address);
 
-  const ArtBazzar = await hre.ethers.getContractFactory("Bazzar");
+  const ArtBazzar = await hre.ethers.getContractFactory("StyleTransferNFTBazzar");
   const artBazzar = await ArtBazzar.deploy();
   await artBazzar.deployed();
   console.log("artBazzar deployed to:", artBazzar.address);
@@ -31,12 +31,12 @@ async function main() {
   console.log("styleTransferNFT deployed to:", styleTransferNFT.address);
 
   let config = `
-  export const nftmarketaddress = "${nftMarket.address}"
-  export const nftaddress = "${nft.address}"
+  export const nftmarketaddress = "${artBazzar.address}"
+  export const nftaddress = "${styleTransferNFT.address}"
   `
 
-  let data = JSON.stringify(config)
-  fs.writeFileSync('config.js', JSON.parse(data))
+  let data = JSON.stringify(config);
+  fs.writeFileSync('config.js', JSON.parse(data));
 }
 
 // We recommend this pattern to be able to use async/await everywhere
