@@ -109,6 +109,7 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
 
 
     idToMarketItem[itemId].owner.transfer(msg.value);
+    _minter.transferToken(idToMarketItem[itemId].owner, msg.sender, tokenId);
 //    IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
     idToMarketItem[itemId].owner = payable(msg.sender);
     idToMarketItem[itemId].sold = true;
