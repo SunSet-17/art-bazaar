@@ -12,18 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to ArtBazzar
-        </h1>
 
-        <p className={styles.description}>
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-        </div>
-      </main> */}
 
       <p className={`${styles.description} `}>FINE BAZAAR FOR <br/>
         ARTIST, CREATOR <br/>
