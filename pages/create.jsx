@@ -4,7 +4,27 @@ import Link from 'next/link'
 // import styles from '../styles/global.module.css' 
 import styles from '../styles/Create.module.css' 
 
-export default function CreatePage() {  
+export default function CreatePage() {
+
+  // Get the 'deepai' package here (Compatible with browser & nodejs):
+  //     https://www.npmjs.com/package/deepai
+  // All examples use JS async-await syntax, be sure to call the API inside an async function.
+  //     Learn more about async-await here: https://javascript.info/async-await
+    
+  // Example posting a image URL:
+
+  const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
+  deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
+
+  async function clickCreate() {
+    var resp = await deepai.callStandardApi("fast-style-transfer", {
+      content: "YOUR_IMAGE_URL",
+      style: "YOUR_IMAGE_URL",
+    });
+    console.log(resp);
+  }
+  
+
   return (
     <>
       <Head>
@@ -19,9 +39,8 @@ export default function CreatePage() {
         <button className={styles.selectBox}></button>
         <br/>
 
-        
         <Link href="/creating"> 
-          <button className={styles.createNow} >CLICK TO CREATE</button>
+          <button className={styles.createNow} onClick={clickCreate}>CLICK TO CREATE</button>
         </Link>
       </div>
 
