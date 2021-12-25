@@ -28,29 +28,33 @@ export default function CreatePage() {
         </div>
 
         <div className={styles.divColRight}>
-          <div className='columns-2'>
-            <Image
-              src={require('/public/outputImg.png')} // Route of the image file
-              height={452} // Desired size with correct aspect ratio
-              width={452} // Desired size with correct aspect ratio
-              alt="Output Img"
-            />
-            <div>
-              <br/>
+          <div className={styles.div3PartParent}>
+            <div className={styles.div1}>
+              <Image
+                src={require('/public/outputImg.png')} // Route of the image file
+                height={452} // Desired size with correct aspect ratio
+                width={452} // Desired size with correct aspect ratio
+                alt="Output Image"
+              />
+            </div>
+            <div className={styles.div2}>
+              {/* <br/> */}
               {/* <button className={styles.tags}></button><br/><br/> */}
-              <p>Name</p>
-              <input className={styles.nameInput}></input><br/><br/>
-              <p>Tags</p>
-              <input className={styles.tagsInput}></input><br/><br/>
-              <p>Price</p>
-              <input className={styles.priceInput}></input><br/><br/>
-              <p>Fees</p>
-              <p>Duration</p>
-              <input className={styles.durationInput}></input><br/><br/>
+              <p className='text-2xl'>Name</p>
+              <input className={styles.theInput} type="text" placeholder="" ></input><br/><br/>
+              <p className='text-2xl'>Tags</p>
+              <input className={styles.theInput} type="text" placeholder="#Tags"></input><br/><br/>
+              <p className='text-2xl'>Price /ETH</p>
+              <input className={styles.theInput} type="text" placeholder="Amount"></input><br/><br/>
+              <p className='text-2xl'>Fees</p>
+              <p className='text-1xl'>todo</p>
+              <p className='text-2xl'>Duration</p>
+              <input className={styles.theInput} type="text" placeholder="6 mouths"></input><br/><br/>
             </div>
           </div>
-          <p>Description</p>
-          <input className={styles.descriptionInput}></input><br/><br/>
+          <p className='text-2xl'>Description</p>
+          {/* //todo 从第一行开始输入 */}
+          <input className={styles.descriptionInput} type="text" placeholder=""></input><br/><br/>
 
           <button className={styles.listOnBazaar} onClick={()=>{
             // todo 生成的图片上链生成NFT 并且加入市场(todo later)
