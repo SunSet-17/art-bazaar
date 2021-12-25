@@ -8,7 +8,3 @@
     /* font-size: 36px; */
     /* line-height: 64px; */
 }
-
-.gridBlock {
-    @apply w-full h-full object-center object-cover lg:w-full lg:h-full
-}
