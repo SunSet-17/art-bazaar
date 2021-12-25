@@ -1,4 +1,4 @@
-// contracts/NFT.sol
+// contracts/StyleTransferNFT.sol
 // SPDX-License-Identifier: MIT OR Apache-2.0
 pragma solidity ^0.8.3;
 
@@ -8,12 +8,12 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 import "hardhat/console.sol";
 
-contract NFT is ERC721URIStorage {
+contract StyleTransferNFT is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     address contractAddress;
 
-    constructor(address marketplaceAddress) ERC721("Metaverse Tokens", "METT") {
+    constructor(address marketplaceAddress) ERC721("StyleTransferTokens", "STT") {
         contractAddress = marketplaceAddress;
     }
 

@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import styles from '../styles/global.module.css' 
 import Link from 'next/link'
+import Web3 from 'web3';
 
 export default function NavComponent({page, login, address}) {
 
