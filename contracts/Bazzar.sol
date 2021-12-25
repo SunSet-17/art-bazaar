@@ -1,4 +1,4 @@
-// contracts/Market.sol
+// contracts/Bazzar.sol
 // SPDX-License-Identifier: MIT OR Apache-2.0
 pragma solidity ^0.8.3;
 
@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 import "hardhat/console.sol";
 
-contract NFTMarket is ReentrancyGuard {
+contract StyleTransferNFTBazzar is ReentrancyGuard {
   using Counters for Counters.Counter;
   Counters.Counter private _itemIds;
   Counters.Counter private _itemsSold;
@@ -48,11 +48,7 @@ contract NFTMarket is ReentrancyGuard {
   }
 
   /* Places an item for sale on the marketplace */
-  function createMarketItem(
-    address nftContract,
-    uint256 tokenId,
-    uint256 price
-  ) public payable nonReentrant {
+  function createMarketItem(address nftContract, uint256 tokenId, uint256 price) public payable nonReentrant {
     require(price > 0, "Price must be at least 1 wei");
     require(msg.value == listingPrice, "Price must be equal to listing price");
 
@@ -84,10 +80,7 @@ contract NFTMarket is ReentrancyGuard {
 
   /* Creates the sale of a marketplace item */
   /* Transfers ownership of the item, as well as funds between parties */
-  function createMarketSale(
-    address nftContract,
-    uint256 itemId
-    ) public payable nonReentrant {
+  function createMarketSale(address nftContract, uint256 itemId) public payable nonReentrant {
     uint price = idToMarketItem[itemId].price;
     uint tokenId = idToMarketItem[itemId].tokenId;
     require(msg.value == price, "Please submit the asking price in order to complete the purchase");
