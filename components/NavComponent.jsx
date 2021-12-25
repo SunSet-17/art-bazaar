@@ -15,16 +15,15 @@ export default function NavComponent({page, login, address}) {
         // this.setState({step: 3});  // to confirm page..
         console.log(localStorage.getItem("address"));
         if (!await ethEnabled()) {
-            alert("");
+            alert("Wallet connecting operation abort");
         }
         address = await web3.eth.getAccounts(); 
-        if(address.length>0){
-          localStorage.setItem("address",address[0]);
-          setAdd(address[0].substring(0, 10)+"...");
+        if(address.length > 0){
+          localStorage.setItem("address", address[0]);
+          setAdd(address[0].substring(0, 10) + "...");
         }
         // const balance = await web3.eth.getBalance(this.address);
         // console.log('blance: ' + balance/1e18);
-          
     }
 
     const ethEnabled = async () => {

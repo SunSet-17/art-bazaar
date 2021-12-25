@@ -13,16 +13,15 @@ export default function CreatePage() {
   //     Learn more about async-await here: https://javascript.info/async-await
     
   // Example posting a image URL:
+  async function createStyleTransferImage() {
+    const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
+    deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
 
-  const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
-  deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
-
-  async function clickCreate() {
-    var resp = await deepai.callStandardApi("fast-style-transfer", {
+    var result = await deepai.callStandardApi("fast-style-transfer", {
       content: "YOUR_IMAGE_URL",
       style: "YOUR_IMAGE_URL",
     });
-    console.log(resp);
+    console.log(result);
   }
   
 
@@ -44,7 +43,7 @@ export default function CreatePage() {
 
           
           <Link href="/creating"> 
-            <button className={styles.createNow} onClick={clickCreate}>CLICK TO CREATE</button>
+            <button className={styles.createNow} onClick={createStyleTransferImage}>CLICK TO CREATE</button>
           </Link>
         </div>
 
