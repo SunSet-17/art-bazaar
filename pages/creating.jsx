@@ -15,19 +15,23 @@ export default function CreatePage() {
 
       <div className={styles.boxDiv}>
         <button className={styles.selectBox}></button>
-        <p className={styles.upload_reminder}>File types supported: JPG, JPEG, PNG, SVG</p>
+        <p className={styles.upload_reminder}></p>
         <button className={styles.selectBox}></button>
         <br/>
 
-        
-        <Link href="/creating"> 
-          <button className={styles.createNow} >CLICK TO CREATE</button>
+        {/* //todo: RESELECT */}
+        <Link href="/todo RESELECT">
+          <button className={styles.reselect} >RESELECT</button>
         </Link>
       </div>
 
       <div className={styles.divRight}>
-        <button className={styles.tags}></button>
-
+        <button className={styles.tags}></button><br/><br/>
+        <input className={styles.nameInput}></input><br/><br/>
+        <input className={styles.tagsInput}></input><br/><br/>
+        <input className={styles.priceInput}></input><br/><br/>
+        <input className={styles.durationInput}></input><br/><br/>
+        <input className={styles.descriptionInput}></input><br/><br/>
       </div>
 
     </>
