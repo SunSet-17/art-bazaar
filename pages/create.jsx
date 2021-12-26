@@ -10,7 +10,7 @@ import { ethers } from 'ethers'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
-
+import { Divider } from 'antd';
 
 // connect to the default API address http://localhost:5001
 const client = ipfsHttpClient()
@@ -35,7 +35,7 @@ export default function CreatePage() {
 
   const [pic, setPic] = useState("");
   const [transStyle, setTransStyle] = useState("");
-  const [outputImgUrl, setOutputImgUrl] = useState("/ui/loading.png");
+  const [outputImgUrl, setOutputImgUrl] = useState("/ui/loading.gif");
   // The content, the style and the result image
 
   const [ifCreating, setIfCreating] = useState(false);
@@ -43,7 +43,6 @@ export default function CreatePage() {
 
   async function createStyleTransferImage() {
     setIfCreating(true);
-    setOutputImgUrl("/ui/loading.png"); //waiting for the result //todo loading
 
     const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
     deepai.setApiKey('c94716d3-97d7-4619-8359-f23e785a3cd5');
@@ -156,7 +155,10 @@ export default function CreatePage() {
             :// -------------------------------------------
 
             <button className={styles.reselect} 
-              onClick={()=>{setIfCreating(false);}}>
+              onClick={()=>{
+                setOutputImgUrl("/ui/loading.gif"); //waiting for the result (loading)
+                setIfCreating(false);
+                }}>
                 <p>RESELECT</p>
                 <img src='/svg/reselect.svg' className='ml-2 mt-1'/>
             </button>
@@ -168,7 +170,18 @@ export default function CreatePage() {
         {!ifCreating ? // -----Create----------------------
 
           <div className={styles.divColRight}>
-            <button className={styles.tags}></button>
+            <button className={styles.tags}>
+              Tags: 
+              <b style={{color:'#7405BA'}}>#</b>abstract
+              <b style={{color:'#7405BA'}}>#</b>landscape
+              <b style={{color:'#7405BA'}}>#</b>meme
+              <b style={{color:'#7405BA'}}>#</b>classical
+              <b style={{color:'#7405BA'}}>#</b>cement 
+              {/* <b style={{color:'#7405BA'}}>#</b>genre
+              <b style={{color:'#7405BA'}}>#</b>portrait 
+              <b style={{color:'#7405BA'}}>#</b>allegorical 
+              <b style={{color:'#7405BA'}}>#</b>history  */}
+            </button>
               {/* //todo about Tags */}
             <StyleGrid callback={(selected)=>{
               console.log('Selected: ', selected);
@@ -183,30 +196,48 @@ export default function CreatePage() {
             <div className={styles.div3PartParent}>
               <div className={styles.div1}>
                 <Image
+                  className='rounded-xl'
                   src={outputImgUrl} // Output Image
-                  height={452}
-                  width={452} 
-                  style={styles.imgInTheBox}
-                  //todo 给成品展示图加上圆角
+                  height={512}
+                  width={512} 
                   alt="Output Image"
                 />
               </div>
               <div className={styles.div2}>
-                <p className='text-2xl'>Name*</p>
-                <input className={styles.theInput} type="text" placeholder="Name" onChange={e => updateFormInput({ ...formInput, name: e.target.value })}></input><br/><br/>
-                <p className='text-2xl'>Tags</p>
-                <input className={styles.theInput} type="text" placeholder="#Tags"></input><br/><br/>
-                <p className='text-2xl'>Price* /ETH</p>
-                <input className={styles.theInput} type="text" placeholder="Amount" onChange={e => updateFormInput({ ...formInput, price: e.target.value })}></input><br/><br/>
-                <p className='text-2xl'>Fees</p>
-                <p className='text-1xl'>todo</p>
-                <p className='text-2xl'>Duration</p>
-                <input className={styles.theInput} type="text" placeholder="6 mouths"></input><br/><br/>
+                <p className={`${styles.inputAbove} text-2xl flex`}>Name<p style={{color:'red'}}>*</p></p>
+                <input className={styles.theInput} type="text" placeholder="Name" 
+                  onChange={e => updateFormInput({ ...formInput, name: e.target.value })}>
+                </input>
+                
+                <p className={`${styles.inputAbove} text-2xl mt-3`}>Tags</p>
+                <input className={styles.theInput} type="text" placeholder="#Tags"></input>
+                <p className={`${styles.inputAbove} text-2xl mt-3 flex`}>Price<p style={{color:'red'}}>*</p> /ETH</p>
+                <input className={styles.theInput} type="text" placeholder="Amount" 
+                  value={1}
+                  onChange={e => updateFormInput({ ...formInput, price: e.target.value })}>
+                </input>
+                <p className={`${styles.totalMoney} text-sm flex justify-end`}>$4,096.99 Total</p>
+                <div className={styles.divider}/>
+                <p className={`${styles.inputAbove} text-2xl bold`}>Fees</p>
+                  <p className='flex justify-between mt-2'>
+                    <p className={styles.feesText}>Artist licensing fee</p>
+                    <p className={styles.feesText}>2.5%</p>
+                  </p>
+                  <p className='flex justify-between mt-1'>
+                    <p className={styles.feesText}>Platform service fee</p>
+                    <p className={styles.feesText}>12.5%</p>
+                  </p>
+                <div className={styles.divider}/>
+                <p className={`${styles.inputAbove} text-2xl mt-3 flex`}>Duration<p style={{color:'red'}}>*</p></p>
+                <input className={styles.theInput} type="text" placeholder="6 mouths"></input>
               </div>
             </div>
-            <p className='text-2xl'>Description</p>
+            <p className='text-2xl mt-3'>Description</p>
             {/* //todo 从第一行开始输入 */}
-            <input className={styles.descriptionInput} type="text" placeholder="Description" onChange={e => updateFormInput({ ...formInput, description: e.target.value })}></input>
+            {/* <input className={styles.descriptionInput} type="text" placeholder="Description" onChange={e => updateFormInput({ ...formInput, description: e.target.value })}></input> */}
+            <textarea className={styles.descriptionInput} type="text" placeholder="Description" onChange={e => updateFormInput({ ...formInput, description: e.target.value })}>
+
+            </textarea>
 
             <div className='mt-12 mb-4 flex justify-center'>
               <button className={styles.listOnBazaar} onClick={createStyleTransferNFT}>LIST ON BAZZAR</button>

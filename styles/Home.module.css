@@ -1,16 +1,17 @@
 /* The font */
 @import url('https://fonts.googleapis.com/css2?family=Acme&family=Shizuru&display=swap');
 
+/* font-family: "Apple LiGothic"; */
+@import url(https://db.onlinewebfonts.com/c/222384cc903735579b585bc529fae84e?family=Apple+LiGothic);
+
 
 .description {
   position: absolute;
   left: 121px;
   top: 306px;
-  font-size:100px;
 
   font-family: 'Acme', sans-serif;
   font-style: normal;
-  font-weight: normal;
   /* font-size: 64px; */
   /* line-height: 81px; */
   /* text-transform: uppercase; */

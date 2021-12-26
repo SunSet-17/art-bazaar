@@ -12,15 +12,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className='flex justify-center'>
+        <img className='mt-12' src='Homepage.svg' ></img>
+      </div>
 
+      
 
-      <p className={`${styles.description} `}>FINE BAZAAR FOR <br/>
+      {/* {styles.description} */}
+      {/* <p className=' '>FINE BAZAAR FOR <br/>
         ARTIST, CREATOR <br/>
         AND COLLECTOR.</p>
 
       <Link href="/create">
         <button className={styles.toCreate} >TO CREATE</button>
-      </Link>
+      </Link> */}
 
       {/* <object className={styles.twoDesigner} src="/public/svg/Designer_Two.svg" type="image/svg+xml" /> */}
 

@@ -9,13 +9,44 @@
 }
 
 
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Shizuru&display=swap');
-
 /* font-family: 'Acme', sans-serif;
 font-family: 'Shizuru', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Shizuru&display=swap');
+
+/* font-family: "Apple LiGothic"; */
+@import url(https://db.onlinewebfonts.com/c/222384cc903735579b585bc529fae84e?family=Apple+LiGothic);
 
 
 
+::-webkit-input-placeholder {
+  font-family: "Apple LiGothic";
+  margin-left: 5rem;
+  font-size: 22px;
+  line-height: 22px;
+  color: rgba(255, 255, 255, 0.46);
+}
+:-moz-placeholder {/* Firefox 18- */
+  font-family: "Apple LiGothic";
+  margin-left: 5rem;
+  font-size: 22px;
+  line-height: 22px;
+  color: rgba(255, 255, 255, 0.46);
+}
+::-moz-placeholder{/* Firefox 19+ */
+  font-family: "Apple LiGothic";
+  margin-left: 5rem;
+  font-size: 22px;
+  line-height: 22px;
+  color: rgba(255, 255, 255, 0.46);
+  
+}
+:-ms-input-placeholder {
+  font-family: "Apple LiGothic";
+  margin-left: 5rem;
+  font-size: 22px;
+  line-height: 22px;
+  color: rgba(255, 255, 255, 0.46);
+}
 
 
 
