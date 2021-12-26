@@ -43,6 +43,7 @@ export default function CreatePage() {
 
   async function createStyleTransferImage() {
     setIfCreating(true);
+    setOutputImgUrl("/svg/empty.svg"); //waiting for the result //todo loading
 
     const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
     deepai.setApiKey('c94716d3-97d7-4619-8359-f23e785a3cd5');
@@ -53,7 +54,7 @@ export default function CreatePage() {
       style: transStyle,
     });
     console.log(result);
-    //todo setOutputImgUrl(result[output_url]);
+    setOutputImgUrl(result['output_url']); // show the result
   }
 
   //todo 异常检测 比如没选择图片点击按钮无效
