@@ -14,6 +14,7 @@ import Web3Modal from 'web3modal'
 
 // connect to the default API address http://localhost:5001
 const client = ipfsHttpClient()
+
 import {
   nftaddress, nftmarketaddress
 } from '../config'
@@ -34,36 +35,41 @@ export default function CreatePage() {
 
   const [pic, setPic] = useState("");
   const [transStyle, setTransStyle] = useState("");
-  // The content and the style
+  const [outputImgUrl, setOutputImgUrl] = useState("/ui/loading.png");
+  // The content, the style and the result image
 
   const [ifCreating, setIfCreating] = useState(false);
   // 用来表征页面是否切换了的变量
 
   async function createStyleTransferImage() {
     setIfCreating(true);
+    setOutputImgUrl("/ui/loading.png"); //waiting for the result //todo loading
 
     const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
-    deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
+    deepai.setApiKey('c94716d3-97d7-4619-8359-f23e785a3cd5');
 
     console.log('Called API with:', pic, 'and', transStyle);
     var result = await deepai.callStandardApi("fast-style-transfer", {
       content: pic,
       style: transStyle,
-      // content: "YOUR_IMAGE_URL",
-      // style: "YOUR_IMAGE_URL",
     });
     console.log(result);
+    setOutputImgUrl(result['output_url']); // show the result
   }
 
   //todo 异常检测 比如没选择图片点击按钮无效
 
   // -----------下面的部分来自原creating.jsx-------------
 
+
   const [fileUrl, setFileUrl] = useState(null)
   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
   const router = useRouter()
 
   async function createStyleTransferNFT(){
+
+    setFileUrl(outputImgUrl)
+
     const { name, description, price } = formInput
     if (!name || !description || !price || !fileUrl) {
       return;
@@ -74,9 +80,12 @@ export default function CreatePage() {
     })
     try {
       const added = await client.add(data)
-      const url = `http://localhost:5001/${added.path}`
+      const url = `https://ipfs.io/ipfs/${added.path}`
       /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
       createSale(url)
+
+      // create nft without going through ipfs
+      // createSale(data.url)
     } catch (error) {
       console.log('Error uploading file: ', error)
     }  
@@ -174,19 +183,21 @@ export default function CreatePage() {
             <div className={styles.div3PartParent}>
               <div className={styles.div1}>
                 <Image
-                  src='/outputImg.png' // Output Image //todo 替换成真的生成图片
+                  src={outputImgUrl} // Output Image
                   height={452}
                   width={452} 
+                  style={styles.imgInTheBox}
+                  //todo 给成品展示图加上圆角
                   alt="Output Image"
                 />
               </div>
               <div className={styles.div2}>
                 <p className='text-2xl'>Name*</p>
-                <input className={styles.theInput} type="text" placeholder="" ></input><br/><br/>
+                <input className={styles.theInput} type="text" placeholder="Name" onChange={e => updateFormInput({ ...formInput, name: e.target.value })}></input><br/><br/>
                 <p className='text-2xl'>Tags</p>
                 <input className={styles.theInput} type="text" placeholder="#Tags"></input><br/><br/>
                 <p className='text-2xl'>Price* /ETH</p>
-                <input className={styles.theInput} type="text" placeholder="Amount"></input><br/><br/>
+                <input className={styles.theInput} type="text" placeholder="Amount" onChange={e => updateFormInput({ ...formInput, price: e.target.value })}></input><br/><br/>
                 <p className='text-2xl'>Fees</p>
                 <p className='text-1xl'>todo</p>
                 <p className='text-2xl'>Duration</p>
@@ -195,7 +206,7 @@ export default function CreatePage() {
             </div>
             <p className='text-2xl'>Description</p>
             {/* //todo 从第一行开始输入 */}
-            <input className={styles.descriptionInput} type="text" placeholder=""></input>
+            <input className={styles.descriptionInput} type="text" placeholder="Description" onChange={e => updateFormInput({ ...formInput, description: e.target.value })}></input>
 
             <div className='mt-12 mb-4 flex justify-center'>
               <button className={styles.listOnBazaar} onClick={createStyleTransferNFT}>LIST ON BAZZAR</button>

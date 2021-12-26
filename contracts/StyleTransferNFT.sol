@@ -23,7 +23,7 @@ contract StyleTransferNFT is ERC721URIStorage {
 
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
-        setApprovalForAll(contractAddress, true);
+        setApprovalForAll(_nftOwner, true);
         return newItemId;
     }
 
