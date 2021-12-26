@@ -5,7 +5,7 @@ pragma solidity ^0.8.3;
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import ".StyleTransferNFT.sol";
+import "./StyleTransferNFT.sol";
 import "hardhat/console.sol";
 
 contract StyleTransferNFTBazzar is ReentrancyGuard {
@@ -74,6 +74,7 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     require(price > 0, "Price must be at least 1 wei");
     require(msg.value == listingPrice, "Price must be equal to listing price");
 
+    tokenId tokenId = _minter.createToken(tokenURI);
     _itemIds.increment();
     uint256 itemId = _itemIds.current();
 
