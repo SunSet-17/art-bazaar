@@ -11,15 +11,15 @@ import "hardhat/console.sol";
 contract StyleTransferNFTBazzar is ReentrancyGuard {
   using Counters for Counters.Counter;
   Counters.Counter private _itemIds;
-  Counters.Counter private _itemsSold;
+  Counters.Counter private _saleIds;
   StyleTransferNFT _minter = new StyleTransferNFT(address(this));
 
-  address payable _BazzarOwner;
+  address payable _bazzarOwner;
   uint256 listingPrice = 0.025 ether;
   uint256 transactionPrice = 0.01 ether;
 
   constructor() {
-    _BazzarOwner = payable(msg.sender);
+    _bazzarOwner = payable(msg.sender);
   }
 
   struct MarketItem {
@@ -33,6 +33,16 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     bool sold;
   }
 
+  struct Sale {
+    uint256 saleId;
+    uint itemId;
+    address seller;
+    address payable buyer;
+    uint endTime;
+    bool isEnded;
+  }
+
+  mapping(uint256 => Sale) private _idToSale;
   mapping(uint256 => MarketItem) private idToMarketItem;
 
   event MarketItemCreated (
@@ -44,6 +54,14 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     uint256 price,
     uint256 creatTime,
     bool sold
+  );
+
+  event tokenTransfer(
+    uint256 indexed itemId,
+    address from,
+    address to,
+    uint time,
+    uint price
   );
 
   /* Returns the listing price of the contract */
@@ -70,7 +88,7 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
       false
     );
 
-    payable(_BazzarOwner).transfer(listingPrice);
+    payable(_bazzarOwner).transfer(listingPrice);
 
     emit MarketItemCreated(
       itemId,
@@ -102,25 +120,42 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
   /* Creates the sale of a marketplace item */
   /* Transfers ownership of the item, as well as funds between parties */
   function createMarketSale(address nftContract, uint256 itemId) public payable nonReentrant {
-    uint price = idToMarketItem[itemId].price;
-    require(msg.value == price + transactionPrice, "Please submit the asking price in order to complete the purchase");
+    require(msg.value == transactionPrice, "Please pay for the transactionFee");
     require(!idToMarketItem[itemId].sold, "The item is sold");
+
+
+    _saleIds.increment();
+    _idToSale[_saleIds] = Sale(
+      _saleIds,
+      itemId,
+      msg.sender,
+      payable(msg.sender),
+      block.timestamp,
+      false
+    );
+//    IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
+    idToMarketItem[itemId].sold = true;
+
+    payable(_bazzarOwner).transfer(transactionPrice);
+  }
+
+  function endMarketSale(uint256 _saleIds) public {
+    uint itemId = _idToSale[_saleIds].itemId;
+    uint price = idToMarketItem[itemId].price;
+    require(msg.value == price, "Please submit the asking price in order to complete the purchase");
     uint tokenId = idToMarketItem[itemId].tokenId;
-
-
     idToMarketItem[itemId].owner.transfer(msg.value);
     _minter.transferToken(idToMarketItem[itemId].owner, msg.sender, tokenId);
-//    IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
     idToMarketItem[itemId].owner = payable(msg.sender);
-    idToMarketItem[itemId].sold = true;
-    _itemsSold.increment();
-    payable(_BazzarOwner).transfer(transactionPrice);
+    idToMarketItem[itemId].sold = false;
+
+    emit tokenTransfer(itemId, _idToSale[_saleIds].seller, _idToSale[_saleIds].buyer, block.timestamp, price);
   }
 
   /* Returns all unsold market items */
   function fetchMarketItems() public view returns (MarketItem[] memory) {
     uint itemCount = _itemIds.current();
-    uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
+    uint unsoldItemCount = _itemIds.current() - _saleIds.current();
     uint currentIndex = 0;
 
     MarketItem[] memory items = new MarketItem[](unsoldItemCount);
@@ -158,6 +193,91 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     }
     return items;
   }
+
+  /* Return the item which you sale */
+  function fetchMySale() public view returns (Sale[] memory, idToMarketItem[] memory) {
+    uint totalSaleCount = _saleIds.current();
+    uint saleCount = 0;
+    uint currentIndex = 0;
+
+    for (uint256 i = 0; i < totalSaleCount; i++) {
+      if (_idToSale[i+1].seller == msg.sender) {
+        saleCount += 1;
+      }
+    }
+
+    Sale[] memory sale = new Sale[](saleCount);
+    idToMarketItem[] memory NFTs = new idToMarketItem[](saleCount);
+    for (uint256 i = 0; i < totalSaleCount; i++) {
+      if (_idToSale[i+1].seller == msg.sender) {
+        uint currentId = i+1;
+        Sale storage currentSale = _idToSale[currentId];
+        idToMarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
+        sale[currentIndex] = currentSale;
+        NFTs[currentIndex] = currentNFT;
+        currentIndex += 1;
+      }
+    }
+
+    return (sale, NFTs);
+  }
+
+  /* Return the item which you purchase */
+  function fetchMyBuy() public view returns (Sale[] memory, idToMarketItem[] memory) {
+    uint totalSaleCount = _saleIds.current();
+    uint saleCount = 0;
+    uint currentIndex = 0;
+
+    for (uint256 i = 0; i < totalSaleCount; i++) {
+      if (_idToSale[i+1].buyer == msg.sender) {
+        saleCount += 1;
+      }
+    }
+
+    Sale[] memory sale = new Sale[](saleCount);
+    idToMarketItem[] memory NFTs = new idToMarketItem[](saleCount);
+    for (uint256 i = 0; i < totalSaleCount; i++) {
+      if (_idToSale[i+1].buyer == msg.sender) {
+        uint currentId = i+1;
+        Sale storage currentSale = _idToSale[currentId];
+        idToMarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
+        sale[currentIndex] = currentSale;
+        NFTs[currentIndex] = currentNFT;
+        currentIndex += 1;
+      }
+    }
+
+    return (sale, NFTs);
+  }
+
+  /* Return the item which is still on sale */
+  function fetchAvailableSale() public view returns (Sale[] memory, idToMarketItem[] memory) {
+    uint totalSaleCount = _saleIds.current();
+    uint saleCount = 0;
+    uint currentIndex = 0;
+
+    for (uint256 i = 0; i < totalSaleCount; i++) {
+      if (!_idToSale[i+1].isEnded) {
+        saleCount += 1;
+      }
+    }
+
+    Sale[] memory sale = new Sale[](saleCount);
+    idToMarketItem[] memory NFTs = new idToMarketItem[](saleCount);
+    for (uint256 i = 0; i < totalSaleCount; i++) {
+      if (!_idToAuction[i+1].isEnded) {
+        uint currentId = i+1;
+        Sale storage currentSale = _idToSale[currentId];
+        idToMarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
+        sale[currentIndex] = currentSale;
+        NFTs[currentIndex] = currentNFT;
+        currentIndex += 1;
+      }
+    }
+
+    return (sale, NFTs);
+  }
+
 
   /* Returns only items a user has created */
   function fetchItemsCreated() public view returns (MarketItem[] memory) {
