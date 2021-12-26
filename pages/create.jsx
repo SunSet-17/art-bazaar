@@ -33,7 +33,6 @@ export default function CreatePage() {
     
   // Example posting a image URL:
 
-  var result;
   const [pic, setPic] = useState("");
   const [transStyle, setTransStyle] = useState("");
   const [outputImgUrl, setOutputImgUrl] = useState("/svg/empty.svg");
@@ -50,7 +49,7 @@ export default function CreatePage() {
     deepai.setApiKey('c94716d3-97d7-4619-8359-f23e785a3cd5');
 
     console.log('Called API with:', pic, 'and', transStyle);
-    result = await deepai.callStandardApi("fast-style-transfer", {
+    var result = await deepai.callStandardApi("fast-style-transfer", {
       content: pic,
       style: transStyle,
     });
@@ -69,7 +68,7 @@ export default function CreatePage() {
 
   async function createStyleTransferNFT(){
 
-    setFileUrl(result.output_url)
+    setFileUrl(outputImgUrl)
 
     const { name, description, price } = formInput
     if (!name || !description || !price || !fileUrl) {
