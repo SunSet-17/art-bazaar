@@ -35,7 +35,7 @@ class OperationBox extends React.PureComponent {
     var {imagePreviewUrl,showImg: showIfNoImg} = this.state;
     var imagePreview = null;
     if (imagePreviewUrl) {
-      imagePreview = ( <label for={'UniqueId-'+this.props.innerWords}><img className={styles.imgInTheBox} src={imagePreviewUrl} /></label>);
+      imagePreview = ( <label htmlFor={'UniqueId-'+this.props.innerWords}><img className={styles.imgInTheBox} src={imagePreviewUrl} /></label>);
       showIfNoImg = 'none';
     } else {
       showIfNoImg = 'block';
@@ -46,7 +46,7 @@ class OperationBox extends React.PureComponent {
         {/* the old id is "avatarFor", the new id to avoid duplication is {'UniqueId-'+this.props.innerWords} */}
         {this.props.clickable && <input id={'UniqueId-'+this.props.innerWords} style={{display:'none'}} type="file" onChange={(e)=>this.handleImageChange(e)}/>}
         {imagePreview}
-        <label className={styles.selectBox} style={{display:showIfNoImg}} for={'UniqueId-'+this.props.innerWords}>
+        <label className={styles.selectBox} style={{display:showIfNoImg}} htmlFor={'UniqueId-'+this.props.innerWords}>
           <div>
             <Image src={this.props.innerIcon} alt={this.props.innerWords} width={72} height={72} />
             <p>{this.props.innerWords}</p>

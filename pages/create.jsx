@@ -70,6 +70,10 @@ export default function CreatePage() {
     setFileUrl(outputImgUrl)
 
     const { name, description, price } = formInput
+    console.log(name)
+    console.log(description)
+    console.log(price)
+    console.log(fileUrl)
     if (!name || !description || !price || !fileUrl) {
       return;
     }
@@ -77,14 +81,15 @@ export default function CreatePage() {
     const data = JSON.stringify({
       name, description, image: fileUrl
     })
+    console.log(data)
     try {
-      const added = await client.add(data)
-      const url = `https://ipfs.io/ipfs/${added.path}`
+      // const added = await client.add(data)
+      // const url = `https://ipfs.io/ipfs/${added.path}`
       /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
-      createSale(url)
+      // createSale(url)
 
       // create nft without going through ipfs
-      // createSale(data.url)
+      createSale(data)
     } catch (error) {
       console.log('Error uploading file: ', error)
     }  

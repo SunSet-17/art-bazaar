@@ -11,10 +11,10 @@ import "hardhat/console.sol";
 contract StyleTransferNFT is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-    address private _nftOwner;
+    address contractAddress;
 
     constructor(address marketplaceAddress) ERC721("StyleTransferTokens", "STT") {
-        _nftOwner = marketplaceAddress;
+        contractAddress = marketplaceAddress;
     }
 
     function createToken(string memory tokenURI) public returns (uint) {
@@ -23,12 +23,7 @@ contract StyleTransferNFT is ERC721URIStorage {
 
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
-        setApprovalForAll(_nftOwner, true);
+        setApprovalForAll(contractAddress, true);
         return newItemId;
-    }
-
-    function transferToken(address from, address to, uint256 tokenId) public {
-        require(msg.sender == _nftOwner, "Transfer permission denied.");
-        _transfer(from, to, tokenId);
     }
 }
