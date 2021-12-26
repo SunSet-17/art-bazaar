@@ -37,7 +37,7 @@ export default function CreatingPage() {
     })
     try {
       const added = await client.add(data)
-      const url = `http://localhost:5001/${added.path}`
+      const url = `https://ipfs.io/ipfs/${added.path}`
       /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
       createSale(url)
 
