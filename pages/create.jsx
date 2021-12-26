@@ -61,11 +61,15 @@ export default function CreatePage() {
 
   // -----------下面的部分来自原creating.jsx-------------
 
+
   const [fileUrl, setFileUrl] = useState(null)
   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
   const router = useRouter()
 
   async function createStyleTransferNFT(){
+
+    setFileUrl(outputImgUrl)
+
     const { name, description, price } = formInput
     if (!name || !description || !price || !fileUrl) {
       return;
@@ -189,11 +193,11 @@ export default function CreatePage() {
               </div>
               <div className={styles.div2}>
                 <p className='text-2xl'>Name*</p>
-                <input className={styles.theInput} type="text" placeholder="" ></input><br/><br/>
+                <input className={styles.theInput} type="text" placeholder="Name" onChange={e => updateFormInput({ ...formInput, name: e.target.value })}></input><br/><br/>
                 <p className='text-2xl'>Tags</p>
                 <input className={styles.theInput} type="text" placeholder="#Tags"></input><br/><br/>
                 <p className='text-2xl'>Price* /ETH</p>
-                <input className={styles.theInput} type="text" placeholder="Amount"></input><br/><br/>
+                <input className={styles.theInput} type="text" placeholder="Amount" onChange={e => updateFormInput({ ...formInput, price: e.target.value })}></input><br/><br/>
                 <p className='text-2xl'>Fees</p>
                 <p className='text-1xl'>todo</p>
                 <p className='text-2xl'>Duration</p>
@@ -202,7 +206,7 @@ export default function CreatePage() {
             </div>
             <p className='text-2xl'>Description</p>
             {/* //todo 从第一行开始输入 */}
-            <input className={styles.descriptionInput} type="text" placeholder=""></input>
+            <input className={styles.descriptionInput} type="text" placeholder="Description" onChange={e => updateFormInput({ ...formInput, description: e.target.value })}></input>
 
             <div className='mt-12 mb-4 flex justify-center'>
               <button className={styles.listOnBazaar} onClick={createStyleTransferNFT}>LIST ON BAZZAR</button>
