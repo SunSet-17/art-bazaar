@@ -35,7 +35,7 @@ export default function CreatePage() {
 
   const [pic, setPic] = useState("");
   const [transStyle, setTransStyle] = useState("");
-  const [outputImgUrl, setOutputImgUrl] = useState("/svg/empty.svg");
+  const [outputImgUrl, setOutputImgUrl] = useState("/ui/loading.png");
   // The content, the style and the result image
 
   const [ifCreating, setIfCreating] = useState(false);
@@ -43,7 +43,7 @@ export default function CreatePage() {
 
   async function createStyleTransferImage() {
     setIfCreating(true);
-    setOutputImgUrl("/svg/empty.svg"); //waiting for the result //todo loading
+    setOutputImgUrl("/ui/loading.png"); //waiting for the result //todo loading
 
     const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
     deepai.setApiKey('c94716d3-97d7-4619-8359-f23e785a3cd5');
@@ -182,6 +182,8 @@ export default function CreatePage() {
                   src={outputImgUrl} // Output Image
                   height={452}
                   width={452} 
+                  style={styles.imgInTheBox}
+                  //todo 给成品展示图加上圆角
                   alt="Output Image"
                 />
               </div>
