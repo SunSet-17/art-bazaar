@@ -64,7 +64,7 @@ export default function NavComponent({page, login, address}) {
                     <Link href="/"><a className="py-4 px-2 text-white font-semibold hover:text-white transition duration-300 ml-20">HOME</a></Link>
                     <Link href="/bazzar"><a className="py-4 px-2 text-white font-semibold hover:text-white transition duration-300">BAZZAR</a></Link>
                     <Link href="/create"><a className="py-4 px-2 text-white font-semibold hover:text-white transition duration-300">CREATE</a></Link>
-                        {/* //todo: 所在的Tab显示按钮的特殊背景 */}
+                        {/* //todo: 所在的Tab显示按钮特殊背景 */}
                     </div>
 
                     </div>
@@ -73,14 +73,16 @@ export default function NavComponent({page, login, address}) {
                     <div className="hidden md:flex items-center space-x-1 ">
                     {/* <a href="" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Log In</a>
                     <a href="" className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Sign Up</a> */}
-                    <a href="#" className="inline-block font-medium px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-bg hover:bg-white mt-4 lg:mt-0" onClick={clickConnect}>{add}</a>
+                    <a href="#" className="inline-block font-medium px-4 py-2 leading-none border rounded-lg text-white border-white hover:border-transparent hover:text-bg hover:bg-white mt-4 lg:mt-0" 
+                        onClick={clickConnect}> {add}
+                    </a>
                     </div>
 
                     {/* <!-- Mobile menu button --> */}
                     <div className="md:hidden flex items-center">
                     {/* 菜单按钮 */}
                     <button onClick={()=>{document.querySelector(".mobile-menu").classList.toggle("hidden")}} className="outline-none mobile-menu-button">
-                        <svg className=" w-6 h-6 text-white hover:text-slate-500 " x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <svg className=" w-6 h-6 text-white hover:text-slate-500 " x-show="!showMenu" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                     </div>
 
@@ -92,7 +94,9 @@ export default function NavComponent({page, login, address}) {
                     <li className="active"><a href="index.html" className="block text-sm px-2 py-4 text-white bg-slate-900 font-semibold">HOME</a></li>
                     <li><a href="/bazzar" className="block text-sm text-white px-2 py-4 hover:bg-slate-900 transition duration-300 ">BAZZAR</a></li>
                     <li><a href="/create" className="block text-sm text-white px-2 py-4 hover:bg-slate-900 transition duration-300">CREATE</a></li>
-                    <li><a href="#" className="inline-block font-medium px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-bg hover:bg-white mt-4 lg:mt-0">CONNECT WALLET</a></li>
+                    <li><a href="#" className="inline-block font-medium px-4 py-2 leading-none border rounded-lg text-white border-white hover:border-transparent hover:text-bg hover:bg-white mt-4 lg:mt-0" 
+                        onClick={clickConnect}> {add}
+                    </a></li>
                 </ul>
                 </div>
             </nav>

@@ -20,7 +20,7 @@ import {
 import StyleTransferNFT from '../artifacts/contracts/StyleTransferNFT.sol/StyleTransferNFT.json'
 import StyleTransferNFTBazzar from '../artifacts/contracts/Bazzar.sol/StyleTransferNFTBazzar.json'
 
-export default function CreatePage() {  
+export default function CreatingPage() {  
 
   const [fileUrl, setFileUrl] = useState(null)
   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
@@ -80,37 +80,40 @@ export default function CreatePage() {
       </Head>
 
       <div className={styles.divColParent}>
-        <div className={styles.boxDiv, styles.divColLeft}>
+        <div className={styles.divColLeft}>
           <button className={styles.selectBox}></button>
           <p className={styles.upload_reminder}></p>
           <button className={styles.selectBox}></button>
           <br/>
+          <div >{/*className='flex justify-center'*/}
+            <Link href="/create">
+              <button className={styles.reselect} >
+                <p>RESELECT</p>
+                <img src='/svg/reselect.svg' className='ml-2 mt-1'/>
+              </button>
+            </Link>
+          </div>
 
-          {/* //todo: RESELECT */}
-          <Link href="/todo RESELECT">
-            <button className={styles.reselect} >RESELECT</button>
-            {/* //todo 返回的图标 */}
-          </Link>
         </div>
 
         <div className={styles.divColRight}>
           <div className={styles.div3PartParent}>
             <div className={styles.div1}>
               <Image
-                src={require('/public/outputImg.png')} // Route of the image file
-                height={452} // Desired size with correct aspect ratio
-                width={452} // Desired size with correct aspect ratio
+                src='/outputImg.png' // Output Image
+                height={452}
+                width={452} 
                 alt="Output Image"
               />
             </div>
             <div className={styles.div2}>
               {/* <br/> */}
               {/* <button className={styles.tags}></button><br/><br/> */}
-              <p className='text-2xl'>Name</p>
+              <p className='text-2xl'>Name*</p>
               <input className={styles.theInput} type="text" placeholder="" ></input><br/><br/>
               <p className='text-2xl'>Tags</p>
               <input className={styles.theInput} type="text" placeholder="#Tags"></input><br/><br/>
-              <p className='text-2xl'>Price /ETH</p>
+              <p className='text-2xl'>Price* /ETH</p>
               <input className={styles.theInput} type="text" placeholder="Amount"></input><br/><br/>
               <p className='text-2xl'>Fees</p>
               <p className='text-1xl'>todo</p>
@@ -120,9 +123,11 @@ export default function CreatePage() {
           </div>
           <p className='text-2xl'>Description</p>
           {/* //todo 从第一行开始输入 */}
-          <input className={styles.descriptionInput} type="text" placeholder=""></input><br/><br/>
+          <input className={styles.descriptionInput} type="text" placeholder=""></input>
 
-          <button className={styles.listOnBazaar} onClick={createStyleTransferNFT}>LIST ON BAZZAR</button>
+          <div className='mt-12 mb-4 flex justify-center'>
+            <button className={styles.listOnBazaar} onClick={createStyleTransferNFT}>LIST ON BAZZAR</button>
+          </div>
         </div>
       </div>
 
