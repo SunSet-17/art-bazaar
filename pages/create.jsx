@@ -14,6 +14,7 @@ import Web3Modal from 'web3modal'
 
 // connect to the default API address http://localhost:5001
 const client = ipfsHttpClient()
+
 import {
   nftaddress, nftmarketaddress
 } from '../config'
@@ -44,7 +45,7 @@ export default function CreatePage() {
     setIfCreating(true);
 
     const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
-    deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
+    deepai.setApiKey('c94716d3-97d7-4619-8359-f23e785a3cd5');
 
     console.log('Called API with:', pic, 'and', transStyle);
     var result = await deepai.callStandardApi("fast-style-transfer", {
@@ -74,9 +75,12 @@ export default function CreatePage() {
     })
     try {
       const added = await client.add(data)
-      const url = `http://localhost:5001/${added.path}`
+      const url = `https://ipfs.io/ipfs/${added.path}`
       /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
       createSale(url)
+
+      // create nft without going through ipfs
+      // createSale(data.url)
     } catch (error) {
       console.log('Error uploading file: ', error)
     }  
