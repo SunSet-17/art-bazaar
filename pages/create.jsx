@@ -36,13 +36,15 @@ export default function CreatePage() {
   var result;
   const [pic, setPic] = useState("");
   const [transStyle, setTransStyle] = useState("");
-  // The content and the style
+  const [outputImgUrl, setOutputImgUrl] = useState("/svg/empty.svg");
+  // The content, the style and the result image
 
   const [ifCreating, setIfCreating] = useState(false);
   // 用来表征页面是否切换了的变量
 
   async function createStyleTransferImage() {
     setIfCreating(true);
+    setOutputImgUrl("/svg/empty.svg"); //waiting for the result //todo loading
 
     const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
     deepai.setApiKey('c94716d3-97d7-4619-8359-f23e785a3cd5');
@@ -51,10 +53,9 @@ export default function CreatePage() {
     result = await deepai.callStandardApi("fast-style-transfer", {
       content: pic,
       style: transStyle,
-      // content: "YOUR_IMAGE_URL",
-      // style: "YOUR_IMAGE_URL",
     });
     console.log(result);
+    setOutputImgUrl(result['output_url']); // show the result
   }
 
   //todo 异常检测 比如没选择图片点击按钮无效
@@ -183,7 +184,7 @@ export default function CreatePage() {
             <div className={styles.div3PartParent}>
               <div className={styles.div1}>
                 <Image
-                  src='/outputImg.png' // Output Image //todo 替换成真的生成图片
+                  src={outputImgUrl} // Output Image
                   height={452}
                   width={452} 
                   alt="Output Image"
