@@ -60,7 +60,7 @@ export default function BazzarPage() {
     return(
         <>
             <Head>
-                <title>ArtBazzar</title>
+                <title>ArtBazaar</title>
                 <meta name="description" content="Style Transfer NFT" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>

@@ -54,7 +54,7 @@ export default function NavComponent({page, login, address}) {
                             <svg className="fill-current h-8 w-8 mr-2" width="56" height="55" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.3286 8.50221H40.5362V0H55.9999V36.9917H49.4892V14.361H18.3286V8.50221Z" fill="url(#paint0_linear_96_36)"/><path d="M8.60529 37.2221V15.2785H0V0H37.4402V6.43271H14.5351V37.2221H8.60529Z" fill="url(#paint1_linear_96_36)"/><path d="M37.6734 46.4978H15.4637V55H0V18.0083H6.51071V40.639H37.6734V46.4978Z" fill="url(#paint2_linear_96_36)"/><path d="M47.3968 17.7779V39.7215H56V55H18.5598V48.5673H41.467V17.7779H47.3968Z" fill="url(#paint3_linear_96_36)"/><defs><linearGradient id="paint0_linear_96_36" x1="18.3286" y1="18.4958" x2="55.9999" y2="18.4958" gradientUnits="userSpaceOnUse"><stop stopColor="#FFBF1E"/><stop offset="1" stopColor="#FDE4A0"/></linearGradient><linearGradient id="paint1_linear_96_36" x1="18.7201" y1="36.86" x2="18.7201" y2="-0.131658" gradientUnits="userSpaceOnUse"><stop stopColor="#AC54EA"/><stop offset="1" stopColor="#AA86D5"/></linearGradient><linearGradient id="paint2_linear_96_36" x1="6650.49" y1="6582.18" x2="-165.763" y2="6582.18" gradientUnits="userSpaceOnUse"><stop stopColor="#FFBF1E"/><stop offset="1" stopColor="#FDE4A0"/></linearGradient><linearGradient id="paint3_linear_96_36" x1="6722.23" y1="3568.02" x2="6722.23" y2="10261.3" gradientUnits="userSpaceOnUse"><stop stopColor="#AC54EA"/><stop offset="1" stopColor="#AA86D5"/></linearGradient></defs></svg>
                             {/* //todo: 改为引用svg */}
                             <Link href="/">
-                            <a style={{textDecoration:'none', fontFamily:"Apple LiGothic"}} className="text-white text-3xl mr-20">ArtBazzar</a>
+                            <a style={{textDecoration:'none', fontFamily:"Apple LiGothic"}} className="text-white text-3xl mr-20">ArtBazaar</a>
                             </Link>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ export default function NavComponent({page, login, address}) {
                     {/* <!-- Primary Navbar items --> */}
                     <div className="hidden md:flex items-center space-x-20">
                     <Link href="/"><a style={{fontFamily:"Apple LiGothic"}} className="py-4 px-2 text-white text-xl hover:text-white transition duration-300 ml-20">HOME</a></Link>
-                    <Link href="/bazzar"><a style={{fontFamily:"Apple LiGothic"}} className="py-4 px-2 text-white text-xl hover:text-white transition duration-300">BAZZAR</a></Link>
+                    <Link href="/bazzar"><a style={{fontFamily:"Apple LiGothic"}} className="py-4 px-2 text-white text-xl hover:text-white transition duration-300">BAZAAR</a></Link>
                     <Link href="/create"><a style={{fontFamily:"Apple LiGothic"}} className="py-4 px-2 text-white text-xl hover:text-white transition duration-300">CREATE</a></Link>
                         {/* //todo: 所在的Tab显示按钮特殊背景 */}
                     </div>

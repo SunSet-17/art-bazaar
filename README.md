@@ -1,4 +1,4 @@
-## ArtBazzar
+## ArtBazaar
 Style Transfer NFT
 Make art crafting more accessible.
 

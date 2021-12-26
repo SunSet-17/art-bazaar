@@ -61,25 +61,25 @@ export default function CreatePage() {
   // -----------下面的部分来自原creating.jsx-------------
 
 
-  const [fileUrl, setFileUrl] = useState(null)
+  // const [fileUrl, setFileUrl] = useState(null)
   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
   const router = useRouter()
 
   async function createStyleTransferNFT(){
 
-    setFileUrl(outputImgUrl)
+    // setFileUrl(outputImgUrl)
 
     const { name, description, price } = formInput
     console.log(name)
     console.log(description)
     console.log(price)
-    console.log(fileUrl)
-    if (!name || !description || !price || !fileUrl) {
+    console.log(outputImgUrl)
+    if (!name || !description || !price || !outputImgUrl) {
       return;
     }
     /* first, upload to IPFS */
     const data = JSON.stringify({
-      name, description, image: fileUrl
+      name, description, image: outputImgUrl
     })
     console.log(data)
     try {
@@ -126,7 +126,7 @@ export default function CreatePage() {
   return (
     <>
       <Head>
-        <title>ArtBazzar</title>
+        <title>ArtBazaar</title>
         <meta name="description" content="Style Transfer NFT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -218,10 +218,10 @@ export default function CreatePage() {
                 <input className={styles.theInput} type="text" placeholder="#Tags"></input>
                 <p className={`${styles.inputAbove} text-2xl mt-3 flex`}>Price<p style={{color:'red'}}>*</p> /ETH</p>
                 <input className={styles.theInput} type="text" placeholder="Amount" 
-                  value={1}
+                  // value={1}
                   onChange={e => updateFormInput({ ...formInput, price: e.target.value })}>
                 </input>
-                <p className={`${styles.totalMoney} text-sm flex justify-end`}>$4,096.99 Total</p>
+                <p className={`${styles.totalMoney} text-sm flex justify-end`}>$1,024.25 Total</p>
                 <div className={styles.divider}/>
                 <p className={`${styles.inputAbove} text-2xl bold`}>Fees</p>
                   <p className='flex justify-between mt-2'>
@@ -245,7 +245,7 @@ export default function CreatePage() {
             </textarea>
 
             <div className='mt-12 mb-4 flex justify-center'>
-              <button className={styles.listOnBazaar} onClick={createStyleTransferNFT}>LIST ON BAZZAR</button>
+              <button className={styles.listOnBazaar} onClick={createStyleTransferNFT}>LIST ON BAZAAR</button>
             </div>
           </div>
 
