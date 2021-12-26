@@ -74,7 +74,7 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     require(price > 0, "Price must be at least 1 wei");
     require(msg.value == listingPrice, "Price must be equal to listing price");
 
-    tokenId tokenId = _minter.createToken(tokenURI);
+    uint256 tokenId = _minter.createToken(tokenURI);
     _itemIds.increment();
     uint256 itemId = _itemIds.current();
 
@@ -120,14 +120,14 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
 
   /* Creates the sale of a marketplace item */
   /* Transfers ownership of the item, as well as funds between parties */
-  function createMarketSale(address nftContract, uint256 itemId) public payable nonReentrant {
+  function createMarketSale(uint256 itemId) public payable nonReentrant {
     require(msg.value == transactionPrice, "Please pay for the transactionFee");
     require(!idToMarketItem[itemId].sold, "The item is sold");
 
-
     _saleIds.increment();
-    _idToSale[_saleIds] = Sale(
-      _saleIds,
+    uint256 saleIds = _saleIds.current();
+    _idToSale[saleIds] = Sale(
+      saleIds,
       itemId,
       msg.sender,
       payable(msg.sender),
@@ -140,8 +140,8 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     payable(_bazzarOwner).transfer(transactionPrice);
   }
 
-  function endMarketSale(uint256 _saleIds) public {
-    uint itemId = _idToSale[_saleIds].itemId;
+  function endMarketSale(uint256 saleIds) public payable{
+    uint itemId = _idToSale[saleIds].itemId;
     uint price = idToMarketItem[itemId].price;
     require(msg.value == price, "Please submit the asking price in order to complete the purchase");
     uint tokenId = idToMarketItem[itemId].tokenId;
@@ -150,7 +150,7 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     idToMarketItem[itemId].owner = payable(msg.sender);
     idToMarketItem[itemId].sold = false;
 
-    emit tokenTransfer(itemId, _idToSale[_saleIds].seller, _idToSale[_saleIds].buyer, block.timestamp, price);
+    emit tokenTransfer(itemId, _idToSale[saleIds].seller, _idToSale[saleIds].buyer, block.timestamp, price);
   }
 
   /* Returns all unsold market items */
@@ -196,7 +196,7 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
   }
 
   /* Return the item which you sale */
-  function fetchMySale() public view returns (Sale[] memory, idToMarketItem[] memory) {
+  function fetchMySale() public view returns (Sale[] memory, MarketItem[] memory) {
     uint totalSaleCount = _saleIds.current();
     uint saleCount = 0;
     uint currentIndex = 0;
@@ -208,12 +208,12 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     }
 
     Sale[] memory sale = new Sale[](saleCount);
-    idToMarketItem[] memory NFTs = new idToMarketItem[](saleCount);
+    MarketItem[] memory NFTs = new MarketItem[](saleCount);
     for (uint256 i = 0; i < totalSaleCount; i++) {
       if (_idToSale[i+1].seller == msg.sender) {
         uint currentId = i+1;
         Sale storage currentSale = _idToSale[currentId];
-        idToMarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
+        MarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
         sale[currentIndex] = currentSale;
         NFTs[currentIndex] = currentNFT;
         currentIndex += 1;
@@ -224,7 +224,7 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
   }
 
   /* Return the item which you purchase */
-  function fetchMyBuy() public view returns (Sale[] memory, idToMarketItem[] memory) {
+  function fetchMyBuy() public view returns (Sale[] memory, MarketItem[] memory) {
     uint totalSaleCount = _saleIds.current();
     uint saleCount = 0;
     uint currentIndex = 0;
@@ -236,12 +236,12 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     }
 
     Sale[] memory sale = new Sale[](saleCount);
-    idToMarketItem[] memory NFTs = new idToMarketItem[](saleCount);
+    MarketItem[] memory NFTs = new MarketItem[](saleCount);
     for (uint256 i = 0; i < totalSaleCount; i++) {
       if (_idToSale[i+1].buyer == msg.sender) {
         uint currentId = i+1;
         Sale storage currentSale = _idToSale[currentId];
-        idToMarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
+        MarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
         sale[currentIndex] = currentSale;
         NFTs[currentIndex] = currentNFT;
         currentIndex += 1;
@@ -252,7 +252,7 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
   }
 
   /* Return the item which is still on sale */
-  function fetchAvailableSale() public view returns (Sale[] memory, idToMarketItem[] memory) {
+  function fetchAvailableSale() public view returns (Sale[] memory, MarketItem[] memory) {
     uint totalSaleCount = _saleIds.current();
     uint saleCount = 0;
     uint currentIndex = 0;
@@ -264,12 +264,12 @@ contract StyleTransferNFTBazzar is ReentrancyGuard {
     }
 
     Sale[] memory sale = new Sale[](saleCount);
-    idToMarketItem[] memory NFTs = new idToMarketItem[](saleCount);
+    MarketItem[] memory NFTs = new MarketItem[](saleCount);
     for (uint256 i = 0; i < totalSaleCount; i++) {
-      if (!_idToAuction[i+1].isEnded) {
+      if (!_idToSale[i+1].isEnded) {
         uint currentId = i+1;
         Sale storage currentSale = _idToSale[currentId];
-        idToMarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
+        MarketItem storage currentNFT = idToMarketItem[currentSale.itemId];
         sale[currentIndex] = currentSale;
         NFTs[currentIndex] = currentNFT;
         currentIndex += 1;
