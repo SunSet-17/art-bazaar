@@ -40,6 +40,9 @@ export default function CreatingPage() {
       const url = `http://localhost:5001/${added.path}`
       /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
       createSale(url)
+
+      // create nft without going through ipfs
+      // createSale(data.url)
     } catch (error) {
       console.log('Error uploading file: ', error)
     }  
