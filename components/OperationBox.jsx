@@ -1,9 +1,9 @@
-import React, { PureComponent } from "react";
+import React, { forwardRef, PureComponent } from "react";
 import Image from "next/image";
 import axios from "axios";
 import styles from '../styles/Create.module.css' 
 
-
+// const OperationBox = forwardRef((props, ref) => {
 class OperationBox extends React.PureComponent {
 
   static defaultProps = {
@@ -26,8 +26,8 @@ class OperationBox extends React.PureComponent {
     }
   }
 
-  // 允许父组件重新传输props
-  componentWillReceiveProps(nextProps) {
+  // 允许父组件重新传输props //todo 换更安全的hooks
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({imagePreviewUrl: nextProps.imagePreviewUrl});
   }
 
@@ -35,7 +35,11 @@ class OperationBox extends React.PureComponent {
     var {imagePreviewUrl,showImg: showIfNoImg} = this.state;
     var imagePreview = null;
     if (imagePreviewUrl) {
-      imagePreview = ( <label htmlFor={'UniqueId-'+this.props.innerWords}><img className={styles.imgInTheBox} src={imagePreviewUrl} /></label>);
+      imagePreview = ( <label htmlFor={'UniqueId-'+this.props.innerWords}>
+          <div className={styles.imgInTheBox}>
+            <Image src={imagePreviewUrl} alt="The Output Image" width={300} height={300}/>
+          </div>
+        </label>);
       showIfNoImg = 'none';
     } else {
       showIfNoImg = 'block';
@@ -114,6 +118,8 @@ class OperationBox extends React.PureComponent {
     // })
   }
 }
+// });
+
 
 
 export default OperationBox;

@@ -1,8 +1,11 @@
-/* The font */
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Shizuru&display=swap');
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
 
+/* The font */
+/* @import url('https://fonts.googleapis.com/css2?family=Acme&family=Shizuru&display=swap'); */
 /* font-family: "Apple LiGothic"; */
-@import url(https://db.onlinewebfonts.com/c/222384cc903735579b585bc529fae84e?family=Apple+LiGothic);
+/* @import url('https://db.onlinewebfonts.com/c/222384cc903735579b585bc529fae84e?family=Apple+LiGothic'); */
 
 .imgInTheGrid {
   @apply w-full h-full object-center object-cover lg:w-full lg:h-full;
@@ -173,6 +176,7 @@
   /* border: 3px solid #281E4D; */
   box-sizing: border-box;
   border-radius: 15px;
+  overflow: hidden; /* important for the border-radius */
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
@@ -280,18 +284,17 @@
   -moz-border-radius: 13px;
   -ms-border-radius: 13px;
   -o-border-radius: 13px;
-}  
+}
 
 .twoDesigner {
-  
   position: absolute;
   width: 901px;
   height: 754px;
   left: 1440px;
   top: 221px;
-
   filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.74));
   transform: matrix(-1, 0, 0, 1, 0, 0);
+  -webkit-filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.74));
 }
 
 

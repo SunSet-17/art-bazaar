@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import Homepage_svg from '../public/Homepage.svg'
 
 export default function Home() {
   return (
@@ -13,7 +14,9 @@ export default function Home() {
       </Head>
 
       <div className='flex justify-center'>
-        <img className='mt-12' src='Homepage.svg' ></img>
+        <div className='mt-16'>
+          <Image src={Homepage_svg} alt='homepage'/>
+        </div>
       </div>
 
       

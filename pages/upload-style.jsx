@@ -22,7 +22,7 @@ export default function CreatePage() {
           <br/>
 
           
-          <Link href="/creating"> 
+          <Link href="/creating" passHref> 
             <button className={styles.createNow} >UPLOAD STYLE</button>
           </Link>
         </div>

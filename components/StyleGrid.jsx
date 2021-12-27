@@ -64,20 +64,23 @@ export default function StyleGrid(props) {
                 <div className="grid grid-cols-1 gap-y-2 gap-x-2 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-6">
                     {transStyles.map((transStyle) => (
                         <div key={transStyle.id} className="group relative">
-                            <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">
-                                <img
+                            <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 ">
+                                {/* <img
                                     onClick={()=>{props.callback(transStyle)}}
                                     src={transStyle.imageSrc}
                                     alt={transStyle.imageAlt}
                                     className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-                                />
-                                {/* <Image
-                                    src={transStyle.imageSrc} // Route of the image file
-                                    alt={transStyle.imageAlt}
-                                    height={420} // Desired size with correct aspect ratio
-                                    width={420} // Desired size with correct aspect ratio
-                                    styles={styles.imgInTheGrid}
                                 /> */}
+                                <div className="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                                    <Image
+                                        onClick={()=>{props.callback(transStyle)}}
+                                        src={transStyle.imageSrc} // Route of the image file
+                                        alt={transStyle.imageAlt}
+                                        height={420} // Desired size with correct aspect ratio
+                                        width={420} // Desired size with correct aspect ratio
+                                    />
+                                </div>
+                                
                             </div>
                             <div className="mt-4 flex justify-between"></div>
                         </div>

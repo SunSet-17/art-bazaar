@@ -11,6 +11,8 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 import { Divider } from 'antd';
+import reselect_svg from '../public/svg/reselect.svg'
+import loading_gif from '../public/ui/loading.gif'
 
 // connect to the default API address http://localhost:5001
 const client = ipfsHttpClient()
@@ -35,7 +37,7 @@ export default function CreatePage() {
 
   const [pic, setPic] = useState("");
   const [transStyle, setTransStyle] = useState("");
-  const [outputImgUrl, setOutputImgUrl] = useState("/ui/loading.gif");
+  const [outputImgUrl, setOutputImgUrl] = useState(loading_gif);
   // The content, the style and the result image
 
   const [ifCreating, setIfCreating] = useState(false);
@@ -147,6 +149,7 @@ export default function CreatePage() {
           <OperationBox innerIcon='/svg/SelectIcon.svg' innerWords='Select Style from the Right'
             clickable={false} 
             imagePreviewUrl={transStyle}
+            
           />
           <br/>
 
@@ -161,11 +164,13 @@ export default function CreatePage() {
 
             <button className={styles.reselect} 
               onClick={()=>{
-                setOutputImgUrl("/ui/loading.gif"); //waiting for the result (loading)
+                setOutputImgUrl(loading_gif); //waiting for the result (loading)
                 setIfCreating(false);
                 }}>
                 <p>RESELECT</p>
-                <img src='/svg/reselect.svg' className='ml-2 mt-1'/>
+                <div className='ml-2 mt-1'>
+                  <Image src={reselect_svg} alt='reselect icon'/>
+                </div>
             </button>
           }{/* -------------------------------------------- */}
 
@@ -192,6 +197,8 @@ export default function CreatePage() {
               console.log('Selected: ', selected);
               setTransStyle(selected.imageSrc);
               console.log('The URL: ', transStyle);
+              
+              
             }}/>
           </div>
           
@@ -204,7 +211,8 @@ export default function CreatePage() {
                   className='rounded-xl'
                   src={outputImgUrl} // Output Image
                   height={512}
-                  width={512} 
+                  width={512}
+                  placeholder={loading_gif}
                   alt="Output Image"
                 />
               </div>
