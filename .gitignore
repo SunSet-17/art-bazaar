@@ -39,6 +39,7 @@ coverage
 coverage.json
 typechain
 config.js
+.env.js
 
 #Hardhat files
 cache

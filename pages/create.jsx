@@ -24,7 +24,9 @@ import {
 import StyleTransferNFT from '../artifacts/contracts/StyleTransferNFT.sol/StyleTransferNFT.json'
 import StyleTransferNFTBazzar from '../artifacts/contracts/Bazzar.sol/StyleTransferNFTBazzar.json'
 
-
+import {
+  API_KEY
+} from '../.env.js'
 
 export default function CreatePage() {
 
@@ -47,7 +49,7 @@ export default function CreatePage() {
     setIfCreating(true);
 
     const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
-    deepai.setApiKey('c94716d3-97d7-4619-8359-f23e785a3cd5');
+    deepai.setApiKey(API_KEY);
 
     console.log('Called API with:', pic, 'and', transStyle);
     var result = await deepai.callStandardApi("fast-style-transfer", {
