@@ -1,9 +1,15 @@
-## ArtBazaar
+# ArtBazaar
 Style Transfer NFT
 
 Make art crafting more accessible.
 
+##[DeepAI Fast Style Transfer API](https://deepai.org/machine-learning-model/fast-style-transfer)
+
+This is a much faster implementation of "Neural Style" accomplished by pre-training on specific style examples.
+
+
 ##
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
